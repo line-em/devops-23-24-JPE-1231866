@@ -32,32 +32,16 @@ public class Employee {
 	private String firstName;
 	private String lastName;
 	private String description;
+	private String jobTitle;
 
 	private Employee() {}
 
-	public Employee(String firstName, String lastName, String description) {
+	public Employee(String firstName, String lastName, String description, String jobTitle) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
+		this.jobTitle = jobTitle;
 	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Employee employee = (Employee) o;
-		return Objects.equals(id, employee.id) &&
-			Objects.equals(firstName, employee.firstName) &&
-			Objects.equals(lastName, employee.lastName) &&
-			Objects.equals(description, employee.description);
-	}
-
-	@Override
-	public int hashCode() {
-
-		return Objects.hash(id, firstName, lastName, description);
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -88,6 +72,14 @@ public class Employee {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getJobTitle() {
+		return jobTitle;
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
 	}
 
 	@Override
