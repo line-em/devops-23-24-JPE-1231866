@@ -35,16 +35,20 @@ class EmployeeList extends React.Component{
 			<Employee key={employee._links.self.href} employee={employee}/>
 		);
 		return (
-			<table>
-				<tbody>
+			<>
+				<h1>Employees</h1>
+				<table>
+					<thead>
 					<tr>
 						<th>First Name</th>
 						<th>Last Name</th>
 						<th>Description</th>
+						<th>Job Title</th>
 					</tr>
-					{employees}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>{employees}</tbody>
+				</table>
+			</>
 		)
 	}
 }
@@ -58,10 +62,12 @@ class Employee extends React.Component{
 				<td>{this.props.employee.firstName}</td>
 				<td>{this.props.employee.lastName}</td>
 				<td>{this.props.employee.description}</td>
+				<td>{this.props.employee.jobTitle}</td>
 			</tr>
 		)
 	}
 }
+
 // end::employee[]
 
 // tag::render[]
