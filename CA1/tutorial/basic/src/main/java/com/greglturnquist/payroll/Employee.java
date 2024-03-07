@@ -89,6 +89,7 @@ public class Employee {
 			", firstName='" + firstName + '\'' +
 			", lastName='" + lastName + '\'' +
 			", description='" + description + '\'' +
+			", jobTitle='" + jobTitle + '\'' +
 			'}';
 	}
 }
