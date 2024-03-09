@@ -27,131 +27,137 @@ import javax.persistence.Id;
 // tag::code[]
 @Entity // <1>
 public class Employee {
-	private @Id
-	@GeneratedValue Long id; // <2>
-	private String firstName;
-	private String lastName;
-	private String description;
-	private String jobTitle;
-	private int jobYears;
+    private @Id
+    @GeneratedValue Long id; // <2>
+    private String firstName;
+    private String lastName;
+    private String description;
+    private String jobTitle;
+    private int jobYears;
+    private String email;
 
-	private Employee() {
-	}
+    private Employee() {
+    }
 
-	public Employee(String firstName, String lastName, String description, String jobTitle, int jobYears) {
-		if (! validateStringArguments(firstName, lastName, description, jobTitle))
-			throw new IllegalArgumentException("Arguments must not be null or empty.");
-		if (! isValidInt(jobYears))
-			throw new IllegalArgumentException("Job years must be a positive number.");
+    public Employee(String firstName, String lastName, String description, String jobTitle, int jobYears, String email) {
+        if (! validateStringArguments(firstName, lastName, description, jobTitle, email))
+            throw new IllegalArgumentException("Arguments must not be null or empty.");
+        if (! isValidInt(jobYears))
+            throw new IllegalArgumentException("Job years must be a positive number.");
 
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.description = description;
-		this.jobTitle = jobTitle;
-		this.jobYears = jobYears;
-	}
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.description = description;
+        this.jobTitle = jobTitle;
+        this.jobYears = jobYears;
+        this.email = email;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		if (! isValidString(firstName))
-			return;
-		this.firstName = firstName;
-	}
+    public void setFirstName(String firstName) {
+        if (! isValidString(firstName))
+            return;
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		if (! isValidString(lastName))
-			return;
-		this.lastName = lastName;
-	}
+    public void setLastName(String lastName) {
+        if (! isValidString(lastName))
+            return;
+        this.lastName = lastName;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		if (! isValidString(description))
-			return;
-		this.description = description;
-	}
+    public void setDescription(String description) {
+        if (! isValidString(description))
+            return;
+        this.description = description;
+    }
 
-	public String getJobTitle() {
-		return jobTitle;
-	}
+    public String getJobTitle() {
+        return jobTitle;
+    }
 
-	public void setJobTitle(String jobTitle) {
-		if (! isValidString(jobTitle))
-			return;
-		this.jobTitle = jobTitle;
-	}
+    public void setJobTitle(String jobTitle) {
+        if (! isValidString(jobTitle))
+            return;
+        this.jobTitle = jobTitle;
+    }
 
-	public int getJobYears() {
-		return jobYears;
-	}
+    public int getJobYears() {
+        return jobYears;
+    }
 
-	public void setJobYears(int jobYears) {
-		if (! isValidInt(jobYears))
-			return;
-		this.jobYears = jobYears;
-	}
+    public void setJobYears(int jobYears) {
+        if (! isValidInt(jobYears))
+            return;
+        this.jobYears = jobYears;
+    }
 
-	private boolean isValidInt(int jobYears) {
-		return jobYears >= 0;
-	}
+    private boolean isValidInt(int jobYears) {
+        return jobYears >= 0;
+    }
 
-	private boolean isValidString(String argument) {
-		return argument != null && !argument.trim().isEmpty();
-	}
+    private boolean isValidString(String argument) {
+        return argument != null && ! argument.trim().isEmpty();
+    }
 
-	private boolean validateStringArguments(String... arguments) {
-		for (String argument : arguments)
-			if (! isValidString(argument))
-				return false;
-		return true;
-	}
+    private boolean validateStringArguments(String... arguments) {
+        for (String argument : arguments)
+            if (! isValidString(argument))
+                return false;
+        return true;
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		Employee employee = (Employee) o;
-		return jobYears == employee.jobYears
-			&& Objects.equals(id, employee.id)
-			&& Objects.equals(firstName, employee.firstName)
-			&& Objects.equals(lastName, employee.lastName)
-			&& Objects.equals(description, employee.description)
-			&& Objects.equals(jobTitle, employee.jobTitle);
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, firstName, lastName, description, jobTitle, jobYears);
-	}
+    public void setEmail(String emailField) {
+        this.email = emailField;
+    }
 
-	@Override
-	public String toString() {
-		return "Employee{" +
-			"id=" + id +
-			", firstName='" + firstName + '\'' +
-			", lastName='" + lastName + '\'' +
-			", jobTitle='" + jobTitle + '\'' +
-			", jobYears='" + jobYears + '\'' +
-			", description='" + description + '\'' +
-			'}';
-	}
+    @Override
+    public String toString() {
+        return "Employee{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", description='" + description + '\'' +
+              ", jobTitle='" + jobTitle + '\'' +
+              ", jobYears=" + jobYears +
+              ", emailField='" + email + '\'' +
+              '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return jobYears == employee.jobYears && Objects.equals(id, employee.id) && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName) && Objects.equals(description, employee.description) && Objects.equals(jobTitle, employee.jobTitle) && Objects.equals(email, employee.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName, description, jobTitle, jobYears, email);
+    }
 }
 // end::code[]
