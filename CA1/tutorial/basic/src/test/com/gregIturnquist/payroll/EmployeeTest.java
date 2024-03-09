@@ -1,4 +1,4 @@
-package com.gregIturnquist.payroll;
+package test.com.gregIturnquist.payroll;
 
 import com.greglturnquist.payroll.Employee;
 import org.junit.jupiter.api.BeforeEach;
