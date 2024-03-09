@@ -1,4 +1,8 @@
 # Technical Report for CA1
+
+## Final Result
+![final_ca1.png](final_ca1.png)
+
 ## Part 1
 ### Step-by-Step Guide
 #### Initial Setup
@@ -60,7 +64,89 @@
   - I did this in the commit `[Data] - Add new Employees. Closes #8`.
 - **19 - Finishing touches and remaining steps**: Minor fixes and UI changes can be made here, to accommodate the new field. For example, I added the jobYears field to the table header in the app.js file.
   - I did this in the commit `[JobYears] - Add new field, jobYears, to the UI. Closes #13`
+  - After that, run the tests and the application to check if everything is working properly.
 - **20 - Tagging the version as v1.2.0**: After finishing the implementation, tag the version as v1.2.0.
   - 20.1. `git tag -a v1.2.0 -m “Support Employee's jobYears field completed.”`
   - 20.2. `git push --tags`
   - 20.3. `git tag` to verify if the tag was created.
+- **21 - Complete the assignment**: After finishing the assigment, tag it as ca1-part1.
+  - 21.1. `git tag -a ca1-part1`
+  - 21.2. `git push --tags`
+  - 21.3. `git tag` to verify if the tag was created.
+
+## Part 2
+### Step-by-Step Guide
+
+#### Adding the email Field
+- **1. Creating a New Branch**: Begin by creating a new branch for adding the email field.
+  - 1.1. `git checkout -b email-field`
+- **2. Verifying the Branch**: Make sure the branch was created successfully.
+  - 2.1. `git branch -a`
+- **3. Adding Email Field to Employee Class**: Add the email field to the Employee class and test it. Commit the tests for the Employee class first.
+- **4. Adding Methods and Validation**: Add methods to Employee, including basic validation, and make fixes in the DatabaseLoader class, so the application can compile.
+- **5. Adding Email Field to UI**: Add the email field to the table in the app.js file. 
+  - Verify that everything is working properly before moving on!
+- **6. Merging Changes**: Now, merge the email-field branch into the main branch.
+  - 6.1. `git checkout main`
+  - 6.2. `git merge email-field`
+- **7. Creating a New Tag**: Create a new tag for this version.
+  - 7.1. `git tag -a v1.3.0 -m "Support Employee's email field"`
+- **8. Verifying Tag Creation**: Verify if the tag was created successfully.
+  - 8.1. `git tag`
+- **9. Pushing Changes and Tag**: Push the changes and the tag to the repository.
+  - 9.1. `git push --tags`
+- **10. Deleting the Branch**: To delete the branch locally, run the following command.
+  - 10.1. `git branch -d email-field`
+- **11. Deleting the Branch Remotely**: To delete the branch remotely, run the following command.
+  - 11.1. `git push origin --delete email-field`
+
+![final_ca1merge.png](final_ca1merge.png)
+
+#### Validating the Email Field - Fix Invalid Email
+- **12. Creating a New Branch**: Begin by creating a new branch for fixing invalid email.
+  - 12.1. `git checkout -b fix-invalid-email`
+- **13. Verifying the Branch**: Make sure the branch was created successfully.
+  - 13.1. `git branch -a`
+- **14. Adding Validation to Email Field**: Add validation to the email field in the Employee class by adding a method `isValidEmail`.
+- **15. Adding Tests**: Add tests to the EmployeeTest class to validate the email field.
+- **16. Merging Changes**: Now, merge the fix-invalid-email branch into the main branch.
+  - 16.1. `git checkout main`
+  - 16.2. `git merge fix-invalid-email`
+- **17. Creating a New Tag**: Create a new tag for this version. This is a minor revision, so it will be v1.3.1.
+  - 17.1. `git tag -a v1.3.1 -m "Add email specific validation for email field at Employee."`
+- **18. Verifying Tag Creation**: Verify if the tag was created successfully.
+  - 18.1. `git tag`
+- **19. Pushing Changes and Tag**: Push the changes and the tag to the repository.
+  - 19.1. `git push --tags`
+- **20. Deleting the Branch**: To delete the branch locally, run the following command.
+  - 20.1. `git branch -d fix-invalid-email`
+- **21. Deleting the Branch Remotely**: To delete the branch remotely, run the following command.
+  - 21.1. `git push origin --delete fix-invalid-email`
+
+![final_ca1merge2.png](final_ca1merge2.png)
+
+- **21 - Complete the assignment**: After finishing both tasks, tag it as ca1-part2.
+  - 21.1. `git tag -a ca1-part2`
+  - 21.2. `git push --tags`
+  - 21.3. `git tag` to verify if the tag was created.
+
+## The Final Result
+Here are some screenshots of the final result. The application is running properly, with the new fields and validations added. The tests are also running properly.
+
+### Tests
+#### jobTitle
+![final_ca1tests.png](final_ca1tests.png)
+
+#### Invalid Email
+![final_ca1invalidemail.png](final_ca1invalidemail.png)
+
+(There are more tests in the EmployeeTestClass)
+
+#### React UI
+![final_ca1.png](final_ca1.png)
+
+#### DatabaseLoader
+![final_ca1db.png](final_ca1db.png)
+
+### Employee Class Constructor
+![final_ca1employee.png](final_ca1employee.png)
