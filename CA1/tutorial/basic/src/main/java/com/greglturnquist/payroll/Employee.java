@@ -42,6 +42,8 @@ public class Employee {
     public Employee(String firstName, String lastName, String description, String jobTitle, int jobYears, String email) {
         if (! validateStringArguments(firstName, lastName, description, jobTitle, email))
             throw new IllegalArgumentException("Arguments must not be null or empty.");
+        if (! isValidEmail(email))
+            throw new IllegalArgumentException("Email must be valid.");
         if (! isValidInt(jobYears))
             throw new IllegalArgumentException("Job years must be a positive number.");
 
@@ -124,6 +126,10 @@ public class Employee {
             if (! isValidString(argument))
                 return false;
         return true;
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.contains("@") && email.contains(".");
     }
 
     public String getEmail() {

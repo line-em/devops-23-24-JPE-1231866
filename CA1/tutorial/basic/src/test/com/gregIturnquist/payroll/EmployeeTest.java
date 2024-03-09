@@ -210,4 +210,28 @@ class EmployeeTest {
                     "ring bearer", "Hobbit",2, ""));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
+
+    @Test
+    public void invalidEmployeeEmailFieldNull() {
+        Exception e = assertThrows(IllegalArgumentException.class,
+              () -> new Employee("Frodo", "Baggins",
+                    "ring bearer", "Hobbit",2, null));
+        assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
+    }
+
+    @Test
+    public void invalidEmployeeEmailFieldNoAt() {
+        Exception e = assertThrows(IllegalArgumentException.class,
+              () -> new Employee("Frodo", "Baggins",
+                    "ring bearer", "Hobbit",2, "frodo@hobbitsme"));
+        assertEquals("Email must be valid.", e.getMessage());
+    }
+
+    @Test
+    public void invalidEmployeeEmailFieldNoDot() {
+        Exception e = assertThrows(IllegalArgumentException.class,
+              () -> new Employee("Frodo", "Baggins",
+                    "ring bearer", "Hobbit",2, "frodohobbits.me"));
+        assertEquals("Email must be valid.", e.getMessage());
+    }
 }
