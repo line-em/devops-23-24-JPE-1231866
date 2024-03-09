@@ -15,7 +15,7 @@ class EmployeeTest {
 
     @BeforeEach
     public void setup() {
-        emp = new Employee("Frodo", "Baggins", "ring bearer", "Hobbit", 2);
+        emp = new Employee("Frodo", "Baggins", "ring bearer", "Hobbit", 2, "frodo@hobbits.me");
         CONSTRUCTOR_ERROR_MESSAGE = "Arguments must not be null or empty.";
         JOB_YEARS_ERROR_MESSAGE = "Job years must be a positive number.";
     }
@@ -39,7 +39,7 @@ class EmployeeTest {
     public void invalidEmployeeFirstName() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("", "Baggins",
-                    "ring bearer", "Hobbit",2));
+                    "ring bearer", "Hobbit",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -47,7 +47,7 @@ class EmployeeTest {
     public void invalidEmployeeFirstNameNull() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee(null, "Baggins",
-                    "ring bearer", "Hobbit",2));
+                    "ring bearer", "Hobbit",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -70,7 +70,7 @@ class EmployeeTest {
     public void invalidEmployeeLastName() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", "",
-                    "ring bearer", "Hobbit",2));
+                    "ring bearer", "Hobbit",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -78,7 +78,7 @@ class EmployeeTest {
     public void invalidEmployeeLastNameNull() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", null,
-                    "ring bearer", "Hobbit",2));
+                    "ring bearer", "Hobbit",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -101,7 +101,7 @@ class EmployeeTest {
     public void invalidEmployeeDescription() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", "Baggins",
-                    "", "Hobbit",2));
+                    "", "Hobbit",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -109,7 +109,7 @@ class EmployeeTest {
     public void invalidEmployeeDescriptionNull() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", "Baggins",
-                    null, "Hobbit",2));
+                    null, "Hobbit",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -132,7 +132,7 @@ class EmployeeTest {
     public void invalidEmployeeJobTitle() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", "Baggins",
-                    "ring bearer", "",2));
+                    "ring bearer", "",2, "frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -140,7 +140,7 @@ class EmployeeTest {
     public void invalidEmployeeJobTitleNull() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", "Baggins",
-                    "ring bearer", null,1));
+                    "ring bearer", null,1,"frodo@hobbits.me"));
         assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -170,7 +170,7 @@ class EmployeeTest {
     public void invalidEmployeeJobYears() {
         Exception e = assertThrows(IllegalArgumentException.class,
               () -> new Employee("Frodo", "Baggins",
-                    "ring bearer", "Hobbit",-2));
+                    "ring bearer", "Hobbit",-2, "frodo@hobbits.me"));
         assertEquals(JOB_YEARS_ERROR_MESSAGE, e.getMessage());
     }
 
@@ -184,7 +184,30 @@ class EmployeeTest {
 
     @Test
     public void testEquals() {
-        Employee emp2 = new Employee("Frodo", "Baggins", "ring bearer", "Hobbit", 2);
+        Employee emp2 = new Employee("Frodo", "Baggins", "ring bearer", "Hobbit", 2, "frodo@hobbits.me");
         assertEquals(emp, emp2);
+    }
+
+    @Test
+    public void validEmployeeEmailField() {
+        String expected = "frodo@hobbits.me";
+        String actual = emp.getEmail();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testEmployeeEmailFieldAfterSetEmailField() {
+        String expected = "frodobaggins@hobbits.me";
+        emp.setEmail("frodobaggins@hobbits.me");
+        String actual = emp.getEmail();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void invalidEmployeeEmailField() {
+        Exception e = assertThrows(IllegalArgumentException.class,
+              () -> new Employee("Frodo", "Baggins",
+                    "ring bearer", "Hobbit",2, ""));
+        assertEquals(CONSTRUCTOR_ERROR_MESSAGE, e.getMessage());
     }
 }
