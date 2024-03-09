@@ -176,7 +176,7 @@ correctness and robustness of the new features.
     - 8.1. `git tag`
 - **9. Pushing Changes and Tag**: Push the changes and the tag to the repository.
     - 9.1. `git push --tags`
-      9.2. `git push`
+    - 9.2. `git push`
 - **10. Deleting the Branch**: To delete the branch locally, run the following command.
     - 10.1. `git branch -d email-field`
 - **11. Deleting the Branch Remotely**: To delete the branch remotely, run the following
@@ -199,8 +199,7 @@ correctness and robustness of the new features.
     - 16.2. `git merge fix-invalid-email`
 - **17. Creating a New Tag**: Create a new tag for this version. This is a minor revision,
   so it will be v1.3.1.
-    -
-    17.1. `git tag -a v1.3.1 -m "Add email specific validation for email field at Employee."`
+    - 17.1. `git tag -a v1.3.1 -m "Add email specific validation for email field at Employee."`
 - **18. Verifying Tag Creation**: Verify if the tag was created successfully.
     - 18.1. `git tag`
 - **19. Pushing Changes and Tag**: Push the changes and the tag to the repository.
@@ -295,6 +294,4 @@ the transition from Git to Mercurial:
   similar to how it's done in Git.
 
 Overall, while there are some differences in the commands and workflows between Git and
-Mercurial, the fundamental concepts of version control remain the same. With a bit of
-practice and familiarity, developers can transition from Git to Mercurial and vice versa
-effectively.
+Mercurial, the fundamental concepts of version control remain the same.
