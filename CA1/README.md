@@ -83,12 +83,12 @@ correctness and robustness of the new features.
   directory from the *“tut-react-and-spring-data-rest-main”* to avoid git tracking
   conflicts.
 - **10. Moving the tut-react-and-spring-data-rest-main to the CA1 directory**:
-    - 10.1 `mv ./Class/tut-react-and-spring-data-rest-main ./CA1`
+    - 10.1 `mv ./YourFolderPath/tut-react-and-spring-data-rest-main ./CA1`
     - 10.2 You can rename the folder, if you want, to something like "tutorial".
-- **11. Committing and Pushing to the GitHub Repository**:
+- **11. Committing and Pushing to the GitHub Repository**: Use git add . to start tracking the new files. However, first, please make sure the .gitignore file from before is working! You don't want folders such as .idea/ and node_modules being added to the repository.
     - 11.1. `git add .`
     - 11.2. `git commit -m “[CA1] - Add tutorial files to CA1”`
-- **12. Warm Up**: After setting up, spend some time warming up. For instance, I did:
+- **12. Warm Up**: After setting up, spend some time warming up, getting to know the project structure. For instance, I did:
     - Modify the CSS, on commit #763301b5, [CSS] - Add custom CSS and Hanken Grotesk font.
       Closes #4.
     - Add the jobTitle field, on commit #08503c70, [FEAT] - Add job title field. Closes
@@ -106,30 +106,29 @@ correctness and robustness of the new features.
 #### Adding the jobYears Field
 
 - **14. Opening the project on IntelliJ** - To avoid problems, I recommend opening the
-  folder "tutorial" directly on IntelliJ. We will work on the basic folder that is inside
+  folder "tutorial" directly on IntelliJ. This is to make sure the `pom.xml` is read correctly. We will work on the `basic/` folder that is inside
   the tutorial folder.
-    - 14.1. Click on "Open or Import" and select the "tutorial" folder.
-- **15 - Add the field jobYears to the Employee.** To properly add the field, it's
-  necessary to:
+    - 14.1. Click on "Open or Import" on IntelliJ, and select the "tutorial" folder.
+- **15 - Add the field jobYears to the Employee.** To properly add the field jobYears, here are the tasks we will need to implement, in no particular order:
     - 15.1. Add the field to the Employee class, adding it to its constructor.
     - 15.2. Add the field to the entries in the DatabaseLoader class.
     - 15.3. Add the field to the table in the app.js file.
     - 15.4. Add validation to the field in the Employee class.
-    - 15.5. Add the field to the EmployeeTest class.
+    - 15.5. Add the field to the EmployeeTest class, where needed, and create new tests.
     - 15.6. Modify methods such as hashCode() and equals() to include the new field.
     - 15.7. Add the corresponding getters and setters.
     - 15.8. Run the tests and the application to check if everything is working properly.
-- **16 - Tests** - We will first commit the tests for the Employee class. To do so, run
+- **16 - Tests** - We will first commit the tests for the Employee class. After making your modifications, run
   the following commands:
-    - 16.1. `git add .`
+    - 16.0. `git status` (to verify the files that were modified)
+    - 16.1. `git add .` (In case you created a new file. You can also specify the file to be added, such as `git add FILE.java`)
     - 16.2. `git commit -m “[JobYears] #Add tests to jobYears. Closes #3”`
     - 16.3. `git status` to check if everything is ok.
     - 16.4. `git push` to push the changes to the repository.
 - **17 - Add methods to employees, including validation.** Do the same process as in the
   previous step, but now for the methods and validation of the jobYears field.
-    - 17.1. `git add .`
-    -
-    17.2. `git commit -m “[JobYears] Add methods to jobYears, validating Employee attributes. Closes #2 #6”`
+    - 17.1. `git add .` and `git status`, whenever it is needed.
+    - 17.2. `git commit -m “[JobYears] Add methods to jobYears, validating Employee attributes. Closes #2 #6”`
     - 17.3. `git push`
 - **18 - Optional - Add new entries**: If you want to add new entries to the database, you
   can do so by adding them to the DatabaseLoader class. After that, run the tests and the
@@ -160,14 +159,14 @@ correctness and robustness of the new features.
 
 - **1. Creating a New Branch**: Begin by creating a new branch for adding the email field.
     - 1.1. `git checkout -b email-field`
-- **2. Verifying the Branch**: Make sure the branch was created successfully.
+- **2. Verifying the Branch**: Make sure the branch was created successfully. You can do this by using:
     - 2.1. `git branch -a`
 - **3. Adding Email Field to Employee Class**: Add the email field to the Employee class
-  and test it. Commit the tests for the Employee class first.
+  and test it. Commit the tests for the Employee class first, following the same steps as before (status/add/commit/push, as needed).
 - **4. Adding Methods and Validation**: Add methods to Employee, including basic
   validation, and make fixes in the DatabaseLoader class, so the application can compile.
 - **5. Adding Email Field to UI**: Add the email field to the table in the app.js file.
-    - Verify that everything is working properly before moving on!
+    - Verify that everything is working properly before moving on! Use `./mvnw spring-boot:run` to verify the changes.
 - **6. Merging Changes**: Now, merge the email-field branch into the main branch.
     - 6.1. `git checkout main`
     - 6.2. `git merge email-field`
