@@ -1,6 +1,6 @@
 # Technical Report for CA1
 
-![final_ca1.png](final_ca1.png)
+![](https://i.postimg.cc/Kj58KJgM/final-ca1.png)
 
 <!-- TOC -->
 * [Technical Report for CA1](#technical-report-for-ca1)
@@ -183,7 +183,7 @@ correctness and robustness of the new features.
   command.
     - 11.1. `git push origin --delete email-field`
 
-![final_ca1merge.png](final_ca1merge.png)
+![final_ca1merge.png](https://i.postimg.cc/j2TjdGCT/final-ca1merge.png)
 
 #### Validating the Email Field - Fix Invalid Email
 
@@ -211,7 +211,7 @@ correctness and robustness of the new features.
   command.
     - 21.1. `git push origin --delete fix-invalid-email`
 
-![final_ca1merge2.png](final_ca1merge2.png)
+![final_ca1merge2.png](https://i.postimg.cc/2jd6X8XS/final-ca1merge2.png)
 
 - **21 - Complete the assignment**: After finishing both tasks, tag it as ca1-part2.
     - 21.1. `git tag -a ca1-part2`
@@ -227,26 +227,26 @@ the new fields and validations added. The tests are also running properly.
 
 #### jobTitle
 
-![final_ca1tests.png](final_ca1tests.png)
+![final_ca1tests.png](https://i.postimg.cc/DZLZh2v5/final-ca1tests.png)
 
 #### Invalid Email
 
-![final_ca1invalidemail.png](final_ca1invalidemail.png)
+![final_ca1invalidemail.png](https://i.postimg.cc/W1z13mpd/final-ca1invalidemail.png)
 
 There are more tests in the EmployeeTestClass
 here: [EmployeeTest.java](https://github.com/line-em/devops-23-24-JPE-1231866/blob/main/CA1/tutorial/basic/src/test/com/gregIturnquist/payroll/EmployeeTest.java)
 
 ### React UI
 
-![final_ca1.png](final_ca1.png)
+![final_ca1.png](https://i.postimg.cc/Kj58KJgM/final-ca1.png)
 
 ### DatabaseLoader
 
-![final_ca1db.png](final_ca1db.png)
+![final_ca1db.png](https://i.postimg.cc/gkYJ9Ffq/final-ca1db.png)
 
 ### Employee Class Constructor
 
-![final_ca1employee.png](final_ca1employee.png)
+![final_ca1employee.png](https://i.postimg.cc/FsDKNCvt/final-ca1employee.png)
 You can find the Employee class
 here: [Employee.java](https://github.com/line-em/devops-23-24-JPE-1231866/blob/main/CA1/tutorial/basic/src/main/java/com/greglturnquist/payroll/Employee.java)
 
@@ -271,7 +271,7 @@ Here are some of the similarities between Mercurial and Git:
 
 Some of the main differences I've found, however, are:
 
-![mercurial.png](mercurial.png)
+![mercurial.png](https://i.postimg.cc/s2tXbBrv/mercurial.png)
 
 Considering the current assignment, here are some considerations to be made when making
 the transition from Git to Mercurial:
@@ -294,4 +294,4 @@ the transition from Git to Mercurial:
   similar to how it's done in Git.
 
 Overall, while there are some differences in the commands and workflows between Git and
-Mercurial, the fundamental concepts of version control remain the same.
+Mercurial, but the fundamental concepts of version control remain the same.
