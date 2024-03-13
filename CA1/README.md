@@ -22,6 +22,7 @@
     * [Employee Class Constructor](#employee-class-constructor)
   * [Alternative Solution](#alternative-solution)
     * [Mercurial](#mercurial)
+* [Author](#author)
 <!-- TOC -->
 
 ## Analysis, Design, and Implementation
@@ -295,3 +296,7 @@ the transition from Git to Mercurial:
 
 Overall, while there are some differences in the commands and workflows between Git and
 Mercurial, but the fundamental concepts of version control remain the same.
+
+# Author
+- [Aline Emily](https://github.com/line-em), 1231866
+- Repository: https://github.com/line-em/devops-23-24-JPE-1231866/
