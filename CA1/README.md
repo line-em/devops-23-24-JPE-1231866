@@ -20,8 +20,12 @@
     * [React UI](#react-ui)
     * [DatabaseLoader](#databaseloader)
     * [Employee Class Constructor](#employee-class-constructor)
-  * [Alternative Solution](#alternative-solution)
-    * [Mercurial](#mercurial)
+* [Alternative Solution](#alternative-solution)
+  * [Mercurial](#mercurial)
+    * [Requirements](#requirements)
+    * [Mercurial Part 1](#mercurial-part-1)
+    * [Mercurial Part 2](#mercurial-part-2)
+  * [Conclusion](#conclusion)
 * [Author](#author)
 <!-- TOC -->
 
@@ -177,7 +181,6 @@ correctness and robustness of the new features.
 - **9. Pushing Changes and Tag**: Push the changes and the tag to the repository.
     - 9.1. `git push --tags`
     - 9.2. `git push`
-- **PS:**: The branch was deleted after the merge. It is not necessary to do this, however.
 
 ![final_ca1merge.png](https://i.postimg.cc/j2TjdGCT/final-ca1merge.png)
 
@@ -201,7 +204,6 @@ correctness and robustness of the new features.
 - **19. Pushing Changes and Tag**: Push the changes and the tag to the repository.
     - 19.1. `git push --tags`
     - 19.2. `git push`
-- **PS:**: The branch was deleted after the merge. It is not necessary to do this, however.
 
 ![final_ca1merge2.png](https://i.postimg.cc/2jd6X8XS/final-ca1merge2.png)
 
@@ -242,9 +244,9 @@ here: [EmployeeTest.java](https://github.com/line-em/devops-23-24-JPE-1231866/bl
 You can find the Employee class
 here: [Employee.java](https://github.com/line-em/devops-23-24-JPE-1231866/blob/main/CA1/tutorial/basic/src/main/java/com/greglturnquist/payroll/Employee.java)
 
-## Alternative Solution
+# Alternative Solution
 
-### Mercurial
+## Mercurial
 
 For an alternative technological solution to version control that is not based on Git, one
 potential option is Mercurial.
@@ -268,25 +270,137 @@ Some of the main differences I've found, however, are:
 Considering the current assignment, here are some considerations to be made when making
 the transition from Git to Mercurial:
 
+### Requirements
+
 - **Initialization and Setup:** Start by initializing a new Mercurial repository in the
   project directory or creating a new repository on a hosting service
   like [Sourcehub](https://hg.sr.ht/). Don't forget to install Mercurial on your machine.
   You can find instructions on how to do
   it [here](https://www.mercurial-scm.org/wiki/Download). You can create a `.hgignore`
   file to avoid tracking unnecessary files, similar to how it's done in Git.
-- **Cloning and Navigation:** Clone the tutorial project from the Mercurial repository
-  into the designated folder using the `hg clone` command. Navigate to the project
-  directory to begin working on the assignment.
-- **Committing and Pushing:** After making changes to the project, use the `hg add`
-  command to stage the changes and then commit them using `hg commit`. Push the commits to
-  the remote repository using `hg push`.
-- **Branching and Merging:** Create feature branches using `hg branch` and `hg merge` them
-  back into the main branch using hg merge when the features are complete.
-- **Tagging Releases:** Tag specific commits as releases or milestones using hg tag,
-  similar to how it's done in Git.
 
-Overall, while there are some differences in the commands and workflows between Git and
-Mercurial, but the fundamental concepts of version control remain the same.
+### Mercurial Part 1
+
+- **1. Initializing a New Mercurial Repository**: Initialize a new Mercurial repository using the following command:
+  - `hg init`
+
+- **2. Creating a .hgignore File**: Create a .hgignore file to avoid tracking unnecessary files.
+
+- **3. Cloning the Tutorial Project from Bitbucket**
+  - 3.1. `hg clone https://bitbucket.org/spring-guides/tut-react-and-spring-data-rest`
+
+- **4. Navigating to the Project Directory**: Move to the basic directory of this project.
+  - `cd ./tut-react-and-spring-data-rest/basic/`
+
+- **5. Running the SpringBoot App**: Execute the command to run the SpringBoot app:
+  - `./mvnw spring-boot:run`
+
+- **6. Checking the Application**: Verify the application is running by accessing it through the browser: http://localhost:8080/
+
+- **7. Creating a New Directory**: Now we need to move the tutorial folder into our previously created repository. If the repository exists on Github, Sourcehub, etc, clone it locally. Next, create a new directory named "CA1" within the repository to store the assignment files, including the tutorial folder.
+  - 7.1. `hg clone https://bitbucket.org/line-em/devops-23-24-JPE-1231866`
+  - 7.2. `mkdir CA1`
+
+- **8. Navigating to the CA1 Directory**: Move to the newly created "CA1" directory.
+  - 8.1. `cd ./CA1`
+
+- **9. Going back to the tut-react-and-spring-data-rest folder**, delete the .git directory from the *“tut-react-and-spring-data-rest-main”* to avoid Mercurial tracking conflicts.
+
+- **10. Moving the tut-react-and-spring-data-rest-main to the CA1 directory**:
+  - 10.1 `mv ./YourFolderPath/tut-react-and-spring-data-rest-main ./CA1`
+  - 10.2 You can rename the folder, if you want, to something like "tutorial".
+
+- **11. Committing and Pushing to the Repository**:
+  - 11.1. `hg add .`
+  - 11.2. `hg commit -m “[CA1] - Add tutorial files to CA1”`
+
+- **12. Warm Up**: After setting up, spend some time warming up, getting to know the project structure.
+
+- **13. Now that everything is properly set up, you can start the assignment.** Tag this version as v1.1.0.
+  - 13.1. `hg tag v1.1.0`
+
+**14. Opening the project on IntelliJ** - To avoid problems, I recommend opening the folder "tutorial" directly on IntelliJ. This is to make sure the `pom.xml` is read correctly. We will work on the `basic/` folder that is inside the tutorial folder.
+- 14.1. Click on "Open or Import" on IntelliJ, and select the "tutorial" folder.
+
+**15 - Add the field jobYears to the Employee.**
+
+**16 - Tests** - We will first commit the tests for the Employee class. After making your modifications, run the following commands:
+- 16.0. `hg status` (to verify the files that were modified)
+- 16.1. `hg commit -m “[JobYears] #Add tests to jobYears. Closes #3”`
+- 16.2. `hg push`
+
+**17 - Add methods to employees, including validation.** Do the same process as in the previous step, but now for the methods and validation of the jobYears field.
+- 17.1. `hg commit -m “[JobYears] Add methods to jobYears, validating Employee attributes. Closes #2 #6”`
+- 17.2. `hg push`
+
+**18 - Optional - Add new entries**: If you want to add new entries to the database, you can do so by adding them to the DatabaseLoader class. After that, run the tests and the application to check if everything is working properly.
+
+**19 - Finishing touches and remaining steps**: Minor fixes and UI changes can be made here, to accommodate the new field. For example, I added the jobYears field to the table header in the app.js file.
+- After that, run the tests and the application to check if everything is working properly.
+
+**20 - Tagging the version as v1.2.0**: After finishing the implementation, tag the version as v1.2.0.
+- 20.1. `hg tag v1.2.0`
+
+**21 - Complete the assignment**: After finishing the assignment, tag it as ca1-part1.
+- 21.1. `hg tag ca1-part1`
+
+### Mercurial Part 2
+
+**1. Creating a New Branch**: Begin by creating a new branch for adding the email field.
+- 1.1. `hg branch email-field`
+
+**2. Verifying the Branch**: Make sure the branch was created successfully. You can do this by using:
+- 2.1. `hg branches`
+
+**3. Adding Email Field to Employee Class**: Add the email field to the Employee class and test it. Commit the tests for the Employee class first, following the same steps as before (status/add/commit/push, as needed).
+
+**4. Adding Methods and Validation**: Add methods to Employee, including basic validation, and make fixes in the DatabaseLoader class, so the application can compile.
+
+**5. Adding Email Field to UI**: Add the email field to the table in the app.js file. Verify that everything is working properly before moving on! Use `./mvnw spring-boot:run` to verify the changes.
+
+**6. Merging Changes**: Now, merge the email-field branch into the main branch.
+- 6.1. `hg update default`
+- 6.2. `hg merge email-field`
+
+**7. Creating a New Tag**: Create a new tag for this version.
+- 7.1. `hg tag v1.3.0`
+
+**8. Verifying Tag Creation**: Verify if the tag was created successfully.
+- 8.1. `hg tags`
+
+**9. Pushing Changes and Tag**: Push the changes and the tag to the repository.
+- 9.1. `hg push`
+
+**12. Creating a New Branch**: Begin by creating a new branch for fixing invalid email.
+- 12.1. `hg branch fix-invalid-email`
+
+**13. Verifying the Branch**: Make sure the branch was created successfully.
+- 13.1. `hg branches`
+
+**14. Adding Validation to Email Field**.
+
+**15. Adding Tests**.
+
+**16. Merging Changes**: Now, merge the fix-invalid-email branch into the main branch.
+- 16.1. `hg update default`
+- 16.2. `hg merge fix-invalid-email`
+
+**17. Creating a New Tag**: Create a new tag for this version. This is a minor revision, so it will be v1.3.1.
+- 17.1. `hg tag v1.3.1`
+
+**18. Verifying Tag Creation**: Verify if the tag was created successfully.
+- 18.1. `hg tags`
+
+**19. Pushing Changes and Tag**: Push the changes and the tag to the repository.
+- 19.1. `hg push`
+
+**21 - Complete the assignment**: After finishing both tasks, tag it as ca1-part2.
+- 21.1. `hg tag ca1-part2`
+- 21.3. `hg tags` to verify if the tag was created.
+
+## Conclusion
+
+In summary, both Git and Mercurial offer comprehensive version control solutions, but Git is more widely adopted with a larger community and ecosystem. Git's branching model is powerful and flexible, while Mercurial prioritizes simplicity and consistency in its user interface. The choice between them often depends on personal preference and project needs, with Git being favored for its popularity and extensive tooling support, while Mercurial shines in stability.
 
 # Author
 - [Aline Emily](https://github.com/line-em), 1231866
