@@ -169,7 +169,7 @@ correctness and robustness of the new features.
     - Verify that everything is working properly before moving on! Use `./mvnw spring-boot:run` to verify the changes.
 - **6. Merging Changes**: Now, merge the email-field branch into the main branch.
     - 6.1. `git checkout main`
-    - 6.2. `git merge email-field`
+    - 6.2. `git merge --no-ff email-field`
 - **7. Creating a New Tag**: Create a new tag for this version.
     - 7.1. `git tag -a v1.3.0 -m "Support Employee's email field"`
 - **8. Verifying Tag Creation**: Verify if the tag was created successfully.
@@ -177,11 +177,7 @@ correctness and robustness of the new features.
 - **9. Pushing Changes and Tag**: Push the changes and the tag to the repository.
     - 9.1. `git push --tags`
     - 9.2. `git push`
-- **10. Deleting the Branch**: To delete the branch locally, run the following command.
-    - 10.1. `git branch -d email-field`
-- **11. Deleting the Branch Remotely**: To delete the branch remotely, run the following
-  command.
-    - 11.1. `git push origin --delete email-field`
+- **PS:**: The branch was deleted after the merge. It is not necessary to do this, however.
 
 ![final_ca1merge.png](https://i.postimg.cc/j2TjdGCT/final-ca1merge.png)
 
@@ -196,7 +192,7 @@ correctness and robustness of the new features.
 - **15. Adding Tests**: Add tests to the EmployeeTest class to validate the email field.
 - **16. Merging Changes**: Now, merge the fix-invalid-email branch into the main branch.
     - 16.1. `git checkout main`
-    - 16.2. `git merge fix-invalid-email`
+    - 16.2. `git merge --no-ff fix-invalid-email`
 - **17. Creating a New Tag**: Create a new tag for this version. This is a minor revision,
   so it will be v1.3.1.
     - 17.1. `git tag -a v1.3.1 -m "Add email specific validation for email field at Employee."`
@@ -205,11 +201,7 @@ correctness and robustness of the new features.
 - **19. Pushing Changes and Tag**: Push the changes and the tag to the repository.
     - 19.1. `git push --tags`
     - 19.2. `git push`
-- **20. Deleting the Branch**: To delete the branch locally, run the following command.
-    - 20.1. `git branch -d fix-invalid-email`
-- **21. Deleting the Branch Remotely**: To delete the branch remotely, run the following
-  command.
-    - 21.1. `git push origin --delete fix-invalid-email`
+- **PS:**: The branch was deleted after the merge. It is not necessary to do this, however.
 
 ![final_ca1merge2.png](https://i.postimg.cc/2jd6X8XS/final-ca1merge2.png)
 
