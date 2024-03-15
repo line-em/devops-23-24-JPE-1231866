@@ -35,7 +35,10 @@ dependencies {
 
 
 // Define the main class for the application
-mainClassName = 'basic_demo.App'
+application {
+    mainClass.set("basic_demo.App")
+}
+
 description = "A trivial Gradle build"
 version = "0.1.0"
 
@@ -72,4 +75,12 @@ task runClient(type:JavaExec, dependsOn: classes){
     mainClass = 'basic_demo.ChatClientApp'
 
     args 'localhost', '59001'
+}
+
+tasks.register('backupSrc', Copy) {
+    group = "DevOps"
+    description = "Backup files from src to backup directory."
+
+    from layout.projectDirectory.dir("src/main")
+    into layout.projectDirectory.dir("src/backup").dir("main")
 }
