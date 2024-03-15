@@ -33,7 +33,6 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-
 // Define the main class for the application
 application {
     mainClass.set("basic_demo.App")
@@ -54,7 +53,8 @@ jar {
     }
 }
 
-task runServer(type: JavaExec, dependsOn: classes) {
+tasks.register('runServer', JavaExec) {
+    dependsOn classes
     group = "DevOps"
     description = "Launches a chat server that listens on a specified port"
 
@@ -66,7 +66,8 @@ task runServer(type: JavaExec, dependsOn: classes) {
     args '59001'
 }
 
-task runClient(type:JavaExec, dependsOn: classes){
+tasks.register('runClient', JavaExec) {
+    dependsOn classes
     group = "DevOps"
     description = "Launches a chat client that connects to a server on localhost:59001 "
 
@@ -86,6 +87,8 @@ tasks.register('backupSrc', Copy) {
 }
 
 tasks.register('archiveSrc', Zip) {
+    group = "DevOps"
+    description = "Compress files from src and add them to src/archive."
     archiveFileName = "gradleChat.zip"
     destinationDirectory = layout.projectDirectory.dir("src/archive")
 
