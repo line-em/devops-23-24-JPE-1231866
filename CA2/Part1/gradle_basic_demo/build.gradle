@@ -84,3 +84,10 @@ tasks.register('backupSrc', Copy) {
     from layout.projectDirectory.dir("src/main")
     into layout.projectDirectory.dir("src/backup").dir("main")
 }
+
+tasks.register('archiveSrc', Zip) {
+    archiveFileName = "gradleChat.zip"
+    destinationDirectory = layout.projectDirectory.dir("src/archive")
+
+    from layout.projectDirectory.dir("src/main")
+}
