@@ -12,7 +12,7 @@
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/*
-
+/.idea
 # AWS User-specific
 .idea/**/aws.xml
 
@@ -162,3 +162,9 @@ buildNumber.properties
 
 # End of https://www.toptal.com/developers/gitignore/api/java,intellij,maven
 /CA2/Part1/gradle_basic_demo/src/backup/
+/CA2/Part2/node_modules/
+/CA2/Part2/node/
+/CA2/.idea/
+
+# exports
+*.pdf
