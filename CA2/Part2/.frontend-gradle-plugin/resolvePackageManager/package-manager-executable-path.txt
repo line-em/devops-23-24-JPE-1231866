@@ -1,0 +1,1 @@
+/home/line-em/ISEP/Repos/devops-23-24-JPE-1231866/CA2/Part2/node/bin/npm
