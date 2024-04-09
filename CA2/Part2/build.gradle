@@ -28,6 +28,15 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.register('copyJar', Copy) {
+    description = "Copies the build generated .jar to the dist/ folder."
+    group = "DevOps"
+
+    dependsOn build
+    from jar
+    into "${project.rootDir}/dist"
+}
+
 frontend {
     nodeVersion = "20.12.1"
     assembleScript = "run build"
