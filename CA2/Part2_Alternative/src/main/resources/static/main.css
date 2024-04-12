@@ -1,0 +1,125 @@
+/*reset*/
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    min-height: 99vh;
+    max-height: calc(100% - 5px - 1rem);
+    width: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/*variables*/
+:root {
+    --base-lighter: #fffaf3;
+    --base: #f2e9e1;
+    --base-darker: #575279;
+    --primary: #d7827e;
+    --primary-light: #ebbcba;
+    --secondary: #56949f;
+    --secondary-darker: #286983;
+
+    --sans: "Hanken Grotesk", sans-serif;
+}
+
+/*styles*/
+
+::selection {
+    background-color: var(--primary);
+    color: var(--base-lighter);
+}
+
+h1 {
+    color: var(--secondary-darker);
+    font-weight: 900;
+    background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0) 65%,
+            var(--base-lighter) 65%
+    );
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--base-darker);
+    background-color: var(--base);
+    border-top: 5px solid var(--secondary);
+    background-image: radial-gradient(var(--primary-light) 1px, transparent 0);
+    background-size: 20px 20px;
+}
+
+table {
+    border-collapse: collapse;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background: var(--base-lighter);
+}
+
+td,
+th {
+    border-block: none;
+    border-inline: 1px solid var(--base-lighter);
+    padding: 0.7rem 1.2rem;
+    text-align: left;
+}
+
+td:first-child,
+th:first-child {
+    border-inline-start: 0;
+}
+
+td:last-child,
+th:last-child {
+    border-inline-end: 0;
+}
+
+thead {
+    color: var(--base-lighter);
+    background-color: var(--primary);
+    border-radius: 10px;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--secondary);
+}
+
+tbody tr td {
+    border-inline: 1px solid var(--primary-light);
+}
+
+tbody tr:last-child {
+    border-bottom: 0;
+}
