@@ -168,3 +168,5 @@ buildNumber.properties
 
 # exports
 *.pdf
+/CA2/Part2_Alternative/node_modules/
+/CA2/Part2_Alternative/node/

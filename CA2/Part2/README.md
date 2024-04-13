@@ -5,6 +5,8 @@
   * [Goals](#goals)
   * [Step-by-Step tutorial](#step-by-step-tutorial)
   * [Alternatives to Gradle](#alternatives-to-gradle)
+      * [Gradle and Maven differences](#gradle-and-maven-differences)
+      * [Step-by-step](#step-by-step)
 * [Author](#author)
 <!-- TOC -->
 
@@ -100,7 +102,167 @@ The goal of Part 2 of this assignment is to convert the basic version of the Tut
     ```
     
 ## Alternatives to Gradle
-The main alternatives to **Gradle** are Maven and Ant. 
+
+The main alternatives to **Gradle** are Maven and Ant. There is, however, some new
+alternatives such as Bazel and Saker.build!
+
+For this tutorial, however, I made the alternative with Maven. You can check the final
+result by going to the folder Part2_Alternative.
+
+   ```bash
+   cd ../Part2_Alternative
+   ```
+
+This part is divided in two section: analysis, and implementation steps.
+
+### Gradle and Maven differences
+
+Here are some of the main differences between the two:
+
+**Build Configuration:**
+
+- Gradle: Uses Groovy/Kotlin for build script definition.
+- Maven: Relies on XML-based POM files with predefined conventions.
+
+**Flexibility and Customization:**
+
+- Gradle: Offers greater flexibility and extensibility.
+- Maven: Follows a convention-over-configuration approach.
+
+**Community and Ecosystem:**
+
+- Gradle: Has a growing community (specially in the mobile community), and ecosystem with
+  extensive documentation, plugins, and community-contributed resources.
+- Maven: Mature ecosystem with a vast repository of plugins and extensive documentation,
+  widely adopted in the Java community.
+
+**Build Automation / Plugins**
+Gradle's build automation extensibility is facilitated by its plugin system, which allows
+developers to create custom plugins and tasks using Groovy or Kotlin. This approach
+enables encapsulation of complex build logic into reusable components and seamless
+integration of existing plugins from
+the [Gradle Plugin Portal](https://plugins.gradle.org/). In contrast, Maven also offers
+plugin-based extensibility through Maven plugins, but its XML-based configurations and
+convention-over-configuration approach can make plugin development more verbose and less
+flexible than Gradle.
+
+Flexibility, however, does have its pros and cons, so it's important to consider the
+option that most suit your needs.
+
+### Step-by-step
+
+1. **Setup Spring Boot Project:** We can also
+   use [https://start.spring.io](https://start.spring.io) to start a new Maven Spring Boot
+   project with the same dependencies as before: **Rest Repositories, Thymeleaf, JPA, and
+   H2.** Extract the generated zip file into the folder `CA2/Part2/` of the repository.
+2. **Project setup**: The initial setup works the same as the previous tutorial, from
+   steps 4-7: We copy the `src` folder, the `package.json` and `webpack.config.js`, delete
+   the `src/main/resources/static/built/`, and fix the imports on the Employee file,
+   adding the `jakarta` dependency.
+3. **Frontend Plugin**: First, we need to add the frontend plugin to the
+   generated `pom.xml` file. It can look something like this - you can modify the node
+   version, etc, if you wish.
+   ```xml
+   <plugin>
+        <groupId>com.github.eirslett</groupId>
+        <artifactId>frontend-maven-plugin</artifactId>
+        <version>1.15.0</version>
+
+        <executions>
+            <execution>
+                <id>install-node-and-npm</id>
+                <goals>
+                    <goal>install-node-and-npm</goal>
+                </goals>
+                <phase>generate-resources</phase>
+            </execution>
+
+            <execution>
+                <id>npm-install</id>
+                <goals>
+                    <goal>npm</goal>
+                </goals>
+                <configuration>
+                    <arguments>npm install</arguments>
+                </configuration>
+            </execution>
+
+            <execution>
+                <id>webpack-build</id>
+                <goals>
+                    <goal>npm</goal>
+                </goals>
+                <configuration>
+                    <arguments>run build</arguments>
+                </configuration>
+            </execution>
+        </executions>
+
+        <configuration>
+            <nodeVersion>v8.11.1</nodeVersion>
+            <npmVersion>5.6.0</npmVersion>
+        </configuration>
+    </plugin>
+    ```
+4. **Copy Task**: We can build our copy task in different ways. Here, in this example,
+   the *.jar file is copied to the `/dist` folder whenever a build/run occurs.
+    ```xml
+   <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version>
+        <executions>
+            <execution>
+                <id>copy-files-on-build</id>
+                <phase>package</phase>
+                <goals>
+                    <goal>copy-resources</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${basedir}/dist</outputDirectory>
+                    <resources>
+                        <resource>
+                            <directory>target/</directory>
+                            <include>*.jar</include>
+                            <filtering>false</filtering>
+                        </resource>
+                    </resources>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+    ```
+5. **Cleanup Task**: Here is an example of a clean plugin, aiming to remove the contents
+   of `/src/main/resources/static/built`.
+    ```xml
+   <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+            <execution>
+                <id>clean-webpack</id>
+                <phase>clean</phase>
+                <goals>
+                    <goal>clean</goal>
+                </goals>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>
+                                ${project.basedir}/src/main/resources/static/built
+                            </directory>
+                            <includes>
+                                <include>*</include>
+                            </includes>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+    ```
+6. Everything is now configured. You can run the application, and please verify if
+   everything is working properly!
 
 Thank you!
 
