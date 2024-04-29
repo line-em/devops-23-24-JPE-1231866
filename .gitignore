@@ -170,3 +170,18 @@ buildNumber.properties
 *.pdf
 /CA2/Part2_Alternative/node_modules/
 /CA2/Part2_Alternative/node/
+
+# Created by https://www.toptal.com/developers/gitignore/api/vagrant
+# Edit at https://www.toptal.com/developers/gitignore?templates=vagrant
+
+### Vagrant ###
+# General
+.vagrant/
+
+# Log files (if you are creating logs in debug mode, uncomment this)
+# *.log
+
+### Vagrant Patch ###
+*.box
+
+# End of https://www.toptal.com/developers/gitignore/api/vagrant
