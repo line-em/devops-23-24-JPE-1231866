@@ -24,7 +24,7 @@ following lines to the Vagrantfile:
 
 ```
 config.ssh.forward_agent = true  
-config.ssh.insert_key = false
+config.ssh.insert_key = true
 ```
 
 And then I added this bit at the web configurations, before the clone:

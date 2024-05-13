@@ -3,7 +3,7 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "generic/ubuntu2004"
     config.ssh.forward_agent = true
-    config.ssh.insert_key = false
+    config.ssh.insert_key = true
 
   # This provision is common for both VMs
   config.vm.provision "shell", inline: <<-SHELL
