@@ -1,7 +1,27 @@
 # Technical Report for CA3 Part 2
 
+<!-- TOC -->
+* [Technical Report for CA3 Part 2](#technical-report-for-ca3-part-2)
+  * [Introduction](#introduction)
+  * [Cloning our repository](#cloning-our-repository)
+  * [Updating dependencies](#updating-dependencies)
+  * [Running the VM](#running-the-vm)
+* [VirtualBox alternative](#virtualbox-alternative)
+  * [Conclusion](#conclusion)
+* [Author](#author)
+<!-- TOC -->
+
+## Introduction
+
+This assignment is the second part of the CA3 assignment. The objective is to create a
+Vagrantfile that will run our Spring Boot application on a VM, and access it from our host
+machine browser.
+
 First of all, we need the base Vagrantfile we will use for this assignment, which you can
 find [here](https://bitbucket.org/pssmatos/vagrant-multi-spring-tut-demo/).
+
+You can move it to the folder you want to use for this assignment. I moved it to the
+CA3/Part2.
 
 However, in order to make it run our application, we will need to make changes to this
 file.
@@ -47,8 +67,12 @@ I found useful to update the ubuntu version for the VM, and to update the Java v
 config.vm.define "web" do |web|
     web.vm.box = "generic/ubuntu2004"
     
+    /* ... */
+    
 config.vm.define "db" do |db|  
   db.vm.box = "generic/ubuntu2004"
+  
+  /* ... */
   
 Vagrant.configure("2") do |config|  
     config.vm.box = "generic/ubuntu2004"
@@ -67,9 +91,14 @@ Lastly, I added the following after `./gradlew clean build` :
 ./gradlew bootRun
 ```
 
-That way, the VM initializes as it should, and the web client is up and running.
+## Running the VM
 
-You can open your browser and verify both the db (http://192.168.56.11:8082/), as the web
+Now that we have everything set up, we can run the VM.
+
+You can initialize the VM by running `vagrant up`, and then ssh into it by
+running `vagrant ssh`.
+
+Now, open your browser and verify both the db (http://192.168.56.11:8082/), as the web
 instance (http://192.168.56.10:8080/)
 
 Here are screenshots of my results:
@@ -102,6 +131,21 @@ differences between the two:
 * VirtualBox: Native support in Vagrant, commonly used.
 * QEMU: Can be used with Vagrant through plugins or by specifying in Vagrantfile, may
   require additional setup.
+
+## Conclusion
+
+In this assignment, our aim was to learn how Vagrant works, automating and streamlining
+the process of setting up a VM. We also learned how to use Vagrant with VirtualBox, and
+how to make changes to the Vagrantfile to suit our needs.
+The process of setting up the VM was straightforward, allowing us to experiment with
+different configurations and dependencies. The advantages of using Vagrant include the
+ability to create reproducible environments, making it easier to share and collaborate on
+projects.
+Vagrant can work with a variety of providers. In this assignment, we used VirtualBox, but
+there are other options available, such as QEMU, VMAware and even Docker.
+In conclusion, Vagrant is a powerful tool that can simplify the process of setting up and
+managing virtual environments - and it makes it very easy to test different environments
+and share it with others.
 
 # Author
 

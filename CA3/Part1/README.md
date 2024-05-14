@@ -3,16 +3,21 @@
 In this tutorial, we'll walk through running our previous projects ( spring boot tutorial
 basic project and gradle_basic_demo ) on a virtual machine.
 
-I made my VM based on the lecture. Please verify what you need for your VM - Each version
+I made my VM based on the lecture - updating only the ubuntu version. Please verify what
+you need for your VM - Each version
 of Ubuntu, etc, may need several tweaks in this process.
+
+If you encounter any issues, please verify the network configurations with the **net-tools
+** package, and the **ifconfig** command.
 
 <!-- TOC -->
 * [Tutorial: Setting up our projects with Vagrant](#tutorial-setting-up-our-projects-with-vagrant)
     * [Step 1: Preparation and Dependency Installation](#step-1-preparation-and-dependency-installation)
+      * [Cloning our repository](#cloning-our-repository)
     * [Step 2: Spring Boot Project (CA2 - Part 2)](#step-2-spring-boot-project-ca2---part-2)
-        * [Spring Boot Tutorial Basic Project](#spring-boot-tutorial-basic-project)
+      * [Spring Boot Tutorial Basic Project](#spring-boot-tutorial-basic-project)
     * [Step 3: Gradle Chat (CA2 - Part 1)](#step-3-gradle-chat-ca2---part-1)
-        * [Gradle Basic Demo](#gradle-basic-demo)
+      * [Gradle Basic Demo](#gradle-basic-demo)
     * [Step 3: Conclusion](#step-3-conclusion)
 <!-- TOC -->
 
@@ -49,6 +54,8 @@ sudo apt install openjdk-17-jdk
 ```
 
 Make sure to install the version that suits your needs.
+
+#### Cloning our repository
 
 Now - to clone our repository. As my repository is private, I'll use a generated SSH key
 to connect the VM to my GitHub account. I always follow this steps from
