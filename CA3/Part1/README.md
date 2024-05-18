@@ -1,4 +1,4 @@
-# Tutorial: Setting up our projects with Vagrant
+# Tutorial: Setting up our projects with Virtual Machines (Virtual Box)
 
 In this tutorial, we'll walk through running our previous projects ( spring boot tutorial
 basic project and gradle_basic_demo ) on a virtual machine.
