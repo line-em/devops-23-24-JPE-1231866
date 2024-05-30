@@ -1,0 +1,27 @@
+services:
+    db:
+        image: oscarfonts/h2:latest
+        container_name: h2-db
+        ports:
+            - "81:81"
+            - "1521:1521"
+        volumes:
+            - h2-data:/opt/h2-data
+            - "C:/Users/line-leia/Downloads/DevOps/CA4/Part2/db:/opt/h2-backup/"
+        environment:
+            - H2_OPTIONS=-ifNotExists
+
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: lineem/1231866_devops:ca4_part2_web
+        container_name: web
+        ports:
+            - "8080:8080"
+        depends_on:
+            - db
+
+volumes:
+    h2-data:
+        driver: local
