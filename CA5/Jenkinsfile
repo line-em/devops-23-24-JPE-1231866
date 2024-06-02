@@ -7,23 +7,24 @@ pipeline {
                 git 'https://github.com/line-em/devops-23-24-JPE-1231866'
             }
         }
-        dir('CA2/Part1/gradle_basic_demo') {
-            stage('Assemble') {
-                steps {
+        stage('Assemble') {
+            steps {
+                dir('CA2/Part1/gradle_basic_demo') {
                     echo 'Assembling...'
-                        sh './gradlew assemble'
+                    sh './gradlew assemble'
                 }
             }
-            stage('Test') {
-                steps {
+        }
+        stage('Test') {
+            steps {
+                dir('CA2/Part1/gradle_basic_demo') {
                     echo 'Testing...'
                     sh './gradlew test'
                 }
-
+            }
                 post {
                     junit '**/build/test-results/**/*.xml'
                 }
-            }
         }
         stage('Archive') {
             steps {
