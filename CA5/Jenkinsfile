@@ -29,7 +29,7 @@ pipeline {
         stage('Archive') {
             steps {
                 echo 'Archiving...'
-                archiveArtifacts artifacts: 'CA2/Part1/gradle_basic_demo/build/libs/*.jar', onlyIfSuccessful: true
+                archiveArtifacts artifacts: 'CA2/Part1/gradle_basic_demo/build/*.jar', onlyIfSuccessful: true
             }
         }
     }
