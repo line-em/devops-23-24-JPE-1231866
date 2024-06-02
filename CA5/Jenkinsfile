@@ -5,6 +5,8 @@ pipeline {
             steps {
                 echo 'Checking Out...'
                 git 'https://github.com/line-em/devops-23-24-JPE-1231866'
+                pwd()
+
             }
         }
         stage('Assemble') {
@@ -22,9 +24,6 @@ pipeline {
                     sh './gradlew test'
                 }
             }
-                post {
-                    junit '**/build/test-results/**/*.xml'
-                }
         }
         stage('Archive') {
             steps {
