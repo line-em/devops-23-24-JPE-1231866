@@ -4,9 +4,10 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking Out...'
-                git 'https://github.com/line-em/devops-23-24-JPE-1231866'
-                pwd()
-
+                script {
+                    git branch: 'main',
+                        url: 'https://github.com/line-em/devops-23-24-JPE-1231866.git'
+                }
             }
         }
         stage('Assemble') {
