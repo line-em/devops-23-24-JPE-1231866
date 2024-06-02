@@ -1,0 +1,35 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking Out...'
+                git 'https://github.com/line-em/devops-23-24-JPE-1231866'
+            }
+        }
+        dir('CA2/Part1/gradle_basic_demo') {
+            stage('Assemble') {
+                steps {
+                    echo 'Assembling...'
+                        sh './gradlew assemble'
+                }
+            }
+            stage('Test') {
+                steps {
+                    echo 'Testing...'
+                    sh './gradlew test'
+                }
+
+                post {
+                    junit '**/build/test-results/**/*.xml'
+                }
+            }
+        }
+        stage('Archive') {
+            steps {
+                echo 'Archiving...'
+                archiveArtifacts artifacts: 'CA2/Part1/gradle_basic_demo/build/libs/*.jar', onlyIfSuccessful: true
+            }
+        }
+    }
+}
