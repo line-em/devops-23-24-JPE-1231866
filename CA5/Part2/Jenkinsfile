@@ -40,10 +40,16 @@ pipeline {
             }
             post {
                 always {
-                    publishHTML(target: [
+                    publishHTML([
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: false,
+                        reportDir: './',
+                        reportFiles: 'index.html',
                         reportName: 'Javadoc',
-                        reportFiles: 'index.html'
-                    ])
+                        reportTitles: '',
+                        useWrapperFileDirectly: true
+                        ])
                 }
             }
         }
