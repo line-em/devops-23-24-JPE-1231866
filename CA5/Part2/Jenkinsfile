@@ -42,7 +42,7 @@ pipeline {
                 always {
                     publishHTML(target: [
                         reportName: 'Javadoc',
-                        reportDir: 'build/docs/javadoc',
+                        reportDir: '/var/jenkins_home/jobs/CA5-Part2/htmlreports/Javadoc',
                         reportFiles: 'index.html'
                     ])
                 }
