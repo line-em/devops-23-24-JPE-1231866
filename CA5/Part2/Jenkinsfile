@@ -31,6 +31,21 @@ pipeline {
                 }
             }
         }
+        stage('Javadoc') {
+            steps {
+                echo 'Generating Javadoc...'
+                sh './gradlew javadoc'
+            }
+            post {
+                always {
+                    publishHTML(target: [
+                        reportName: 'Javadoc',
+                        reportDir: 'build/docs/javadoc',
+                        reportFiles: 'index.html'
+                    ])
+                }
+            }
+        }
         stage('Archive') {
             steps {
                 echo 'Archiving...'
