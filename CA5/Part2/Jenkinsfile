@@ -1,0 +1,41 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking Out...'
+                script {
+                    git branch: 'main',
+                        url: 'https://github.com/line-em/devops-23-24-JPE-1231866.git'
+                }
+            }
+        }
+        stage('Assemble') {
+            steps {
+                dir('./CA2/Part2') {
+                    echo 'Assembling...'
+                    sh './gradlew assemble'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir('./CA2/Part2') {
+                    echo 'Testing...'
+                    sh './gradlew test'
+                }
+            }
+            post {
+                always {
+                    junit '**/build/test-results/**/*.xml'
+                }
+            }
+        }
+        stage('Archive') {
+            steps {
+                echo 'Archiving...'
+                archiveArtifacts artifacts: 'CA2/Part2/build/**/*.jar', onlyIfSuccessful: true
+            }
+        }
+    }
+}
