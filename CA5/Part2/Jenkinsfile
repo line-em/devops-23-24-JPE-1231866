@@ -44,7 +44,7 @@ pipeline {
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: false,
-                        reportDir: './',
+                        reportDir: './CA2/Part2/build/docs/javadoc',
                         reportFiles: 'index.html',
                         reportName: 'Javadoc',
                         reportTitles: '',
