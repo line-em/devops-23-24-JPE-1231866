@@ -33,8 +33,10 @@ pipeline {
         }
         stage('Javadoc') {
             steps {
-                echo 'Generating Javadoc...'
-                sh './gradlew javadoc'
+                dir('./CA2/Part2') {
+                    echo 'Generating Javadoc...'
+                    sh './gradlew javadoc'
+                }
             }
             post {
                 always {
