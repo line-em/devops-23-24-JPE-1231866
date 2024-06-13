@@ -11,6 +11,7 @@
     - [Docker Setup](#docker-setup)
     - [Docker Permissions](#docker-permissions)
     - [Results](#results)
+    - [Docker Hub](#docker-hub)
 - [Conclusion](#conclusion)
 - [Author](#author)
 
@@ -124,10 +125,6 @@ For the second part, we need to create a new Jenkinsfile for our CA2/Part2 proje
 First, install the following plugin in order to make our publishHTML stage work:
 
 ![alt text](images/plugin_html.png)
-
-Jenkins has a Pipeline Syntax configurator that can help generating our code for this stage:
-
-![alt text](images/publishHTML_pipeline_syntax.png)
 
 You can also install the **Docker Pipeline** plugin for later.
 
@@ -336,6 +333,8 @@ It ran successfully, with both the Javadoc and Test components rendering well:
 ![alt text](images/pt2_tests.png)
 
 ![alt text](images/pt2_javadoc.png)
+
+### Docker Hub
 
 We can also check Docker Hub, and run our image.
 
