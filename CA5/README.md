@@ -6,8 +6,12 @@
   - [Introduction](#introduction)
   - [Prerequisites](#prerequisites)
   - [CA5 Part 1](#ca5-part-1)
+    - [The Jenkinsfile](#the-jenkinsfile)
+    - [Setting Up the Jenkins Pipeline](#setting-up-the-jenkins-pipeline)
+    - [Configuring the Pipeline](#configuring-the-pipeline)
     - [Result](#result)
   - [CA5 Part 2](#ca5-part-2)
+    - [The Jenkinsfile](#the-jenkinsfile-1)
     - [Docker Setup](#docker-setup)
     - [Docker Permissions](#docker-permissions)
     - [Results](#results)
@@ -26,7 +30,7 @@ This will allow us to understand how Jenkins works, and the various ways it can 
 ## Prerequisites
 
 To follow this tutorial, you need to have **Jenkins** installed and properly configured.
-This includes setting up the necessary Jenkins plugins - in this case, **publishHTML, Javadoc and Docker related plugins**.
+This includes setting up the necessary Jenkins plugins - in this case, **publishHTML and Docker related plugins**.
 
 You can install Jenkins on Docker, using the following image:
 ![Jenkins](images/jenkinsimage.png)
@@ -36,11 +40,21 @@ You can follow the instructions on the `docker logs`
 
 ![jenkins auth](images/jenkins_auth.png)
 
+Then you can complete the installation, installing all the recommended plugins.
+
+Afterwards, go to "Manage Jenkins" -> "Manage Plugins" -> "Available" and search for the plugins mentioned before (Docker Pipeline and publishHTML). Here's how they look like:
+
+![alt text](images/plugin_html.png)
+
+Now we have everything setup for the next steps!
+
 ## CA5 Part 1
 
-The first part of the CA5 is to practic with our project Gradle Basic Demo. So that's what we're going to do!
+The first part of the CA5 is to practice with our project Gradle Basic Demo. So that's what we're going to do!
 
-Our Jenkinsfile for this project should include the following tasks: Checkout, Assemble, Test and Archive. Please remember that it follows the groovy language and syntax. Here's what mine looks like:
+Our Jenkinsfile for this project should include the following tasks: **Checkout, Assemble, Test and Archive**. Please remember that it follows the **groovy** language and syntax. Here's what mine looks like:
+
+### The Jenkinsfile
 
 ```groovy
 pipeline {
@@ -85,50 +99,55 @@ pipeline {
 }
 ```
 
-Please verify if all the directories are alright, as this can cause some trouble. Also, please take note that this repository is public - for private repositories, you might need to tweak the process to include your credentials!
+Before proceeding, ensure all directories are correctly set up to avoid potential issues. Note that this guide assumes the repository is public. For private repositories, additional steps to include credentials may be necessary.
 
-We also need to create our pipeline at Jenkins. At your **Dashboard**, go to **New Item > Pipeline** and name it the way your prefer. Mine is *ca5_part1*.
+### Setting Up the Jenkins Pipeline
 
-You need to configure Jenkins to find and run our pipeline script properly though, so click on **Configure**, go to **Pipeline** and do the following:
+1. Navigate to your Jenkins **Dashboard**.
+2. Select **New Item > Pipeline** and assign a name of your choice. For this guide, the pipeline is named `ca5_part1`.
 
-- Select **Pipeline Script on SCM** on Definition
-- Choose **Git**
-- Add your repository and credentials, if you have any.
-- Choose your **branch**. I specified that mine runs on *origin/main*.
-  ![alt text](images/pipeline_branch.png)
-- Specify your Jenkinsfile path. Mine is on *CA5/Part1/Jenkinsfile*.
-- If you encounter any problems, disable **Lightweight Checkout**. Mine is checked off.
+### Configuring the Pipeline
 
-You might need to tweak this process depending on your configurations and project.
-Fortunately, Jenkins is very intuitive and when certain tasks fail, you can easily detect what went wrong:
+To configure Jenkins to correctly find and execute our pipeline script, follow these steps:
+
+1. Click on **Configure**, then navigate to the **Pipeline** section.
+2. For the **Definition**, select **Pipeline script from SCM**.
+3. Set **SCM** to **Git**.
+4. Enter your repository URL. Add credentials if your repository is private.
+5. Specify the branch to build from, such as `origin/main`.
+   ![Pipeline branch configuration](images/pipeline_branch.png)
+6. Enter the path to your Jenkinsfile, e.g., `CA5/Part1/Jenkinsfile`.
+7. If you encounter any issues, consider disabling **Lightweight Checkout** (this option is unchecked in this guide).
+
+Adjust these steps as necessary to fit your project's specific requirements and configurations. Jenkins provides intuitive feedback for troubleshooting failed tasks, making it easier to identify and resolve issues!
 
 ![alt text](images/part1_process.png)
 
 ### Result
 
-If your pipeline runs successfully, you should encounter a view such as this, fully in green:
+Upon a successful pipeline execution, you'll be greeted with a fully green pipeline, indicating success:
 
-![alt text](images/part1_result.png)
+![Pipeline Success](images/part1_result.png)
 
 ![alt text](images/part1_result2.png)
 
-You can rename your builds for an easier time searching, and also check the results of several steps, such as the Tests:
+Mastering this may take some time and practice—it certainly did for me! The key is to ensure every step has executed correctly. Verify the tests have passed, the archive is complete, etc. Here's an example of successful test results:
 
-![alt text](images/part1_tests.png)
+![Tests](images/part1_tests.png)
 
 Now we're ready for the second part for this assignment!
 
 ## CA5 Part 2
 
-For the second part, we need to create a new Jenkinsfile for our CA2/Part2 project. We will have the following stages: Checkout, Assemble, Test, Javadoc, publishHTML, Archive, and Publish Image, in order to generate a docker image and push it to Docker Hub.
+For the second part, we need to create a new Jenkinsfile for our CA2/Part2 project. We will have the following stages: **Checkout, Assemble, Test, Javadoc, publishHTML, Archive, and Create / Publish Docker Image**, in order to generate a docker image and push it to Docker Hub.
 
-First, install the following plugin in order to make our publishHTML stage work:
+First, make sure you have the following plugins installed - **publishHTML and Docker Pipeline** (and its dependencies, like Docker Commons)
 
 ![alt text](images/plugin_html.png)
 
-You can also install the **Docker Pipeline** plugin for later.
+With that settled, we can write our Jenkinsfile.
 
-With that settled, we can write our Jenkinsfile. Here's how mine looks like:
+### The Jenkinsfile
 
 ```groovy
 /* groovylint-disable CompileStatic */
@@ -326,21 +345,48 @@ components.
 
 ![alt text](images/pt2_login2.png)
 
-It ran successfully, with both the Javadoc and Test components rendering well:
+It ran successfully, with both the Javadoc and Test components rendering well, which can be seen in different parts of the Jenkins interface!
+
+**Pipeline Overview:**
 
 ![alt text](images/pt2_success.png)
 
+**Test Results:**
+
 ![alt text](images/pt2_tests.png)
+
+**Javadocs:**
 
 ![alt text](images/pt2_javadoc.png)
 
+You can check all of these to make sure it ran properly.
+
+PS: You can try to build your Dockerfile in the way that suits your projects necessities best. For instance, I also tried running my old image from CA4/Part2, like this, and it also worked as expected!
+
+```groovy
+stage('Create Dockerfile') {
+    steps {
+        script {
+            echo 'Creating Dockerfile...'
+            writeFile file: 'Dockerfile', text: """
+            FROM lineem/1231866_devops:ca4_part2_web
+            LABEL author="Aline Emily"
+            CMD [ "gradle", "bootRun" ]
+                    """
+        }
+    }
+}
+```
+
 ### Docker Hub
 
-We can also check Docker Hub, and run our image.
+We can also check Docker Hub, and run our image locally to verify the results.
 
 ![alt text](images/pt2_docker_hub.png)
 
 ![alt text](images/pt2_rundocker.png)
+
+The DockerHub link is here: [https://hub.docker.com/repository/docker/lineem/1231866_devops_ca5/general](https://hub.docker.com/repository/docker/lineem/1231866_devops_ca5/general)
 
 # Conclusion
 
@@ -357,4 +403,4 @@ I look forward to applying the skills and knowledge I've gained in future projec
 # Author
 
 - [Aline Emily](https://github.com/line-em), 1231866
-- Repository: https://github.com/line-em/devops-23-24-JPE-1231866/
+- **Repository**: https://github.com/line-em/devops-23-24-JPE-1231866/
